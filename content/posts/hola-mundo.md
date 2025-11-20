@@ -1,5 +1,5 @@
 ---
-title: "Mi primer post con código y mate"
+title: "Holaaa??, prueba"
 date: 2025-11-19
 draft: false
 ---
