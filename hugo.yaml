@@ -45,9 +45,3 @@ markup:
           inline:
             - [ "$", "$" ]
             - [ "\\(", "\\)" ]
-
-params:
-  # Asegúrate de que esto siga aquí
-  math: true
-  defaultTheme: auto
-  # ... el resto de tus params

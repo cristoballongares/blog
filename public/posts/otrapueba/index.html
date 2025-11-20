@@ -130,12 +130,10 @@
 <p>Aquí explico la teoría matemática y mi implementación en C++.</p>
 <h2 id="el-problema-matemático">El Problema Matemático<a hidden class="anchor" aria-hidden="true" href="#el-problema-matemático">#</a></h2>
 <p>Queremos aproximar el valor de una integral definida:</p>
-<p>$$I = \int_{a}^{b} f(x) dx$$</p>
-<p>La idea es dividir el área bajo la curva en $n$ pequeños trapecios. La suma de las áreas de estos trapecios nos da el valor aproximado.</p>
+$$I = \int_{a}^{b} f(x) dx$$<p>La idea es dividir el área bajo la curva en $n$ pequeños trapecios. La suma de las áreas de estos trapecios nos da el valor aproximado.</p>
 <h3 id="la-fórmula">La Fórmula<a hidden class="anchor" aria-hidden="true" href="#la-fórmula">#</a></h3>
 <p>Si definimos el ancho de cada paso como $h = \frac{b-a}{n}$, la fórmula de aproximación es:</p>
-<p>$$\int_{a}^{b} f(x) dx \approx \frac{h}{2} \left[ f(a) + 2\sum_{i=1}^{n-1} f(a + i \cdot h) + f(b) \right]$$</p>
-<p>Donde:</p>
+$$\int_{a}^{b} f(x) dx \approx \frac{h}{2} \left[ f(a) + 2\sum_{i=1}^{n-1} f(a + i \cdot h) + f(b) \right]$$<p>Donde:</p>
 <ul>
 <li>$a$ y $b$ son los límites de integración.</li>
 <li>$n$ es el número de divisiones (trapecios).</li>
