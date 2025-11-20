@@ -9,7 +9,7 @@ summary: "Hoy aprendí a calcular el área bajo la curva usando sumatorias y C++
 ---
 
 Hoy en clase de aaaaaaaaasdadasdascálculo numérico vimos cómo resolver integrales definidas que son difíciles de calcular a mano. La técnica más sencilla es la **Regla del Trapecio**.
-
+dasdasdasdas
 Aquí explico la teoría matemática y mi implementación en C++.
 
 ## El Problema Matemático
