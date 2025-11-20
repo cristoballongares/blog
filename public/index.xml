@@ -6,19 +6,19 @@
     <description>Recent content on Mi Diario Dev</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>es-es</language>
-    <lastBuildDate>Sun, 19 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 19 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Aprendiendo Integrales con Python</title>
       <link>http://localhost:1313/posts/prueba/</link>
-      <pubDate>Sun, 19 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 19 Nov 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/prueba/</guid>
       <description>&lt;p&gt;Aquí empieza tu texto normal&amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mi primer post con código y mate</title>
       <link>http://localhost:1313/posts/hola-mundo/</link>
-      <pubDate>Sun, 19 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 19 Nov 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/hola-mundo/</guid>
       <description>&lt;p&gt;Hola, este es mi primer post.&lt;/p&gt;
 &lt;h3 id=&#34;prueba-de-código&#34;&gt;Prueba de Código&lt;/h3&gt;

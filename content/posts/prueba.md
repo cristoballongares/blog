@@ -1,6 +1,6 @@
 ---
 title: "Aprendiendo Integrales con Python"
-date: 2023-11-19
+date: 2025-11-19
 draft: false
 categories: ["Matemáticas"]
 tags: ["python", "calculo", "scipy"]

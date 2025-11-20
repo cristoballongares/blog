@@ -1,6 +1,6 @@
 ---
 title: "Mi primer post con código y mate"
-date: 2023-11-19
+date: 2025-11-19
 draft: false
 ---
 
