@@ -2,6 +2,7 @@
 title: "Implementando la Regla del Trapecio en C++"
 date: 2025-11-19
 draft: false
+math: true
 categories: ["C++", "Matemáticas"]
 tags: ["calculo", "integrales", "algoritmos"]
 summary: "Hoy aprendí a calcular el área bajo la curva usando sumatorias y C++."
@@ -98,3 +99,4 @@ Limites: [0, 3]
 Divisiones (n): 1000
 Resultado aproximado: 9.0000045
 Resultado real: 9.0
+```
