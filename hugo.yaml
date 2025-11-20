@@ -30,3 +30,24 @@ menu:
       name: Tags
       url: /tags/
       weight: 20
+
+
+      # Configuración para que Hugo entienda las matemáticas
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - [ "$$", "$$" ]
+            - [ "\\(", "\\)" ]
+          inline:
+            - [ "$", "$" ]
+            - [ "\\(", "\\)" ]
+
+params:
+  # Asegúrate de que esto siga aquí
+  math: true
+  defaultTheme: auto
+  # ... el resto de tus params
