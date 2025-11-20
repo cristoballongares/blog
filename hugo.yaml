@@ -1,38 +1,11 @@
-baseURL: "https://blogdev-black.vercel.app"
+baseURL: "https://blogdev-black.vercel.app/"
 languageCode: "es-es"
 title: "Mi Diario Dev"
 theme: "PaperMod"
 
-params:
-  # Color del tema (auto detecta modo oscuro/claro)
-  defaultTheme: auto
-  # Activar matemáticas (LaTeX)
-  math: true
-  
-  # Configuración de la página de inicio
-  homeInfoParams:
-    Title: "Hola, soy Dev 👋"
-    Content: "Aquí comparto mis soluciones de código y aprendizaje de matemáticas."
+enableInlineShortcodes: true
 
-  # Redes sociales (opcional, puedes borrarlas si quieres)
-  socialIcons:
-    - name: github
-      url: "https://github.com/"
-
-# Menú de navegación arriba
-menu:
-  main:
-    - identifier: categories
-      name: Categorías
-      url: /categories/
-      weight: 10
-    - identifier: tags
-      name: Tags
-      url: /tags/
-      weight: 20
-
-
-      # Configuración para que Hugo entienda las matemáticas
+# Configuración crítica para que Hugo NO rompa las fórmulas matemáticas
 markup:
   goldmark:
     extensions:
@@ -45,3 +18,28 @@ markup:
           inline:
             - [ "$", "$" ]
             - [ "\\(", "\\)" ]
+
+params:
+  # Color del tema
+  defaultTheme: auto
+  # ESTO ES IMPORTANTE: Activa el script de matemáticas en el tema
+  math: true
+  
+  homeInfoParams:
+    Title: "Hola, soy Dev 👋"
+    Content: "Aquí comparto mis soluciones de código y aprendizaje de matemáticas."
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/"
+
+menu:
+  main:
+    - identifier: categories
+      name: Categorías
+      url: /categories/
+      weight: 10
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
