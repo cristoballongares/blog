@@ -16,7 +16,9 @@ Aquí explico la teoría matemática y mi implementación en C++.
 
 Queremos aproximar el valor de una integral definida:
 
-$$I = \int_{a}^{b} f(x) dx$$
+$$
+I = \int_{a}^{b} f(x) dx
+$$
 
 La idea es dividir el área bajo la curva en $n$ pequeños trapecios. La suma de las áreas de estos trapecios nos da el valor aproximado.
 
@@ -24,7 +26,9 @@ La idea es dividir el área bajo la curva en $n$ pequeños trapecios. La suma de
 
 Si definimos el ancho de cada paso como $h = \frac{b-a}{n}$, la fórmula de aproximación es:
 
-$$\int_{a}^{b} f(x) dx \approx \frac{h}{2} \left[ f(a) + 2\sum_{i=1}^{n-1} f(a + i \cdot h) + f(b) \right]$$
+$$
+\int_{a}^{b} f(x) dx \approx \frac{h}{2} \left[ f(a) + 2\sum_{i=1}^{n-1} f(a + i \cdot h) + f(b) \right]
+$$
 
 Donde:
 * $a$ y $b$ son los límites de integración.
