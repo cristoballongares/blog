@@ -1,0 +1,43 @@
+Guía Completa de Markdown
+
+1.  Encabezados # Título H1 ## Título H2 ### Título H3
+
+2.  Estilo de texto negritas itálica ~~tachado~~ código inline
+
+3.  Bloques de código
+
+    int main() {
+        cout << "Hola Cristóbal";
+    }
+
+4.  Listas
+
+-   Item
+-   Subitem
+
+5.  Citas > Esto es una cita.
+
+6.  Enlaces Texto
+
+7.  Imágenes [alt]
+
+8.  Tablas | Columna | Dato | |——–|——| | A | B |
+
+9.  Separadores
+
+10. Matemáticas E = mc²
+
+11. Checklist
+
+-   ☒ Hecho
+-   ☐ Pendiente
+
+12. Comentarios
+
+13. Bloques colapsables
+
+    Ver
+
+    Texto oculto.
+
+14. Emoji :rocket:
