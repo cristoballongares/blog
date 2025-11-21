@@ -1,6 +1,6 @@
 baseURL: "https://blogdev-black.vercel.app/"
 languageCode: "es-es"
-title: "Mi Diario Dev"
+title: "Blog dev"
 theme: "PaperMod"
 
 enableInlineShortcodes: true
@@ -26,12 +26,16 @@ params:
   math: true
   
   homeInfoParams:
-    Title: "Hola, soy Dev 👋"
-    Content: "Aquí comparto mis soluciones de código y aprendizaje de matemáticas."
+    Title: "Holaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Content: ""
 
   socialIcons:
     - name: github
-      url: "https://github.com/"
+      url: "https://github.com/cristoballongares"
+
+  cover:
+    hiddenInList: false
+    hidden: false
 
 menu:
   main:

@@ -1,7 +1,13 @@
 ---
-title: "Hola:) - General"
+title: "main.cpp"
 date: 2025-11-20
 draft: false
+
+cover:
+    image: "/images/pinguinorojocompu.jpg"
+    alt: "yo"
+    relative: false
+
 ---
 
 # Introduccion
