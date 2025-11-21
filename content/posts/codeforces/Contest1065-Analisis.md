@@ -1,6 +1,6 @@
 ---
-date: '2025-11-20T22:01:37-06:00'
-draft: true
+date: '2025-11-20'
+draft: false
 title: 'Contest1065 Analisis'
 ---
 
