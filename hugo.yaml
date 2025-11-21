@@ -26,16 +26,13 @@ params:
   math: true
   
   homeInfoParams:
-    Title: "Holaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Title: ":)"
     Content: ""
 
   socialIcons:
     - name: github
       url: "https://github.com/cristoballongares"
 
-  cover:
-    hiddenInList: false
-    hidden: false
 
 menu:
   main:
