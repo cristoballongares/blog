@@ -7,7 +7,7 @@ title: 'Codeforces- Contest1065 Analisis'
 ![Pinguino](/images/pinguino_pensando.webp)
 
 # Introduccion
-Participar en este contest fue todo un reto y no lo digo por los problemas jajaja, lamentablemente llegue un poco mas de 15 minutos despues de iniciar (9:05AM aprox) *mal mal*. La razon principal a esto es porque tuve que caminar un largo tramo para llegar a la escuela, cosa que no tenia previsto pero bueno, no habia nada que hacer, solo caminar rapido para tratar de llegar a tiempo.
+Participar en este contest fue todo un reto y no lo digo el problemset, lamentablemente llegue un poco mas de 15 minutos despues de que iniciara (9:05AM aprox) *mal mal*. La razon principal a esto es porque tuve que caminar un largo tramo para llegar a la escuela, cosa que no tenia previsto pero bueno, no habia nada que hacer, solo caminar rapido para tratar de llegar a tiempo.
 Otro detalle es que resolvia mientras estaba en clase jajaja, el estar haciendo apuntes, pensar en las preguntas del maestro, en el problema, etc. Afortunadamente *quiero pensar* que el maestro no se dio cuenta:p.
 Lamentablemente solo resolvi 2 problemas (A,B), el ultimo casi a 30 minutos de terminar la competencia 😞.
 Bueno, el analisis a los problemas es el siguiente:
@@ -33,7 +33,7 @@ La solucion es:
 *n* es multiplo de 4?
 - Si: sol = $\frac{n}{4}$. Todas vacas
 - No: sol = $\frac{n-2}{4}$. 
-- Simplificando: sol = $\frac{n+2}{4}$. Porque?. Primero, indendientemente de que *n* sea o no divisible entre 4, al sumarle 2 a *n* hacemos que al hacer la division, esta incluya las patas de la vacas y la de los pollos, sin depender de que 4 divida exactamente a *n*. De forma simple, hacemos un *empujon* a *n* de tal forma que se alcance el proximo de divisor de 4. Por ejemplo, si *n=10 (n+2=12)* la cantidad minima seria 2 vacas y 1 pollo. Si n = 12
+- Simplificando: sol = $\frac{n+2}{4}$. Porque?. Primero, indendientemente de que *n* sea o no divisible entre 4, al sumarle 2 a *n* hacemos que al hacer la division, esta incluya las patas de la vacas y la de los pollos, sin depender de que 4 divida exactamente a *n*. De forma simple, hacemos un *empujon* a *n* con el fin de que si la division tuviera residuo, esta se aproxime a un divisor de 4 y en caso de que no haya residuo, no se redondaria al proximo divisor de 4.
   
   
 Dicho problema es *casi* el mismo planteamiento, con la diferencia de que en el actual problema nos pide la cantidad de *diferentes* configuraciones posibles.
