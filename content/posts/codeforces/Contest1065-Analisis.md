@@ -14,6 +14,7 @@ Bueno, el analisis a los problemas es el siguiente:
 
 ## A. Shizuku Hoshikawa and Farm Legs
 El problema es el siguiente:
+
 At Farmer John's farm, Shizuku counts *n* legs. It is known that only chickens and cows live on the farm; a chicken has 2 legs, while a cow has 4.
 
 Count how many different configurations of Farmer John's farm are possible. Two configurations are considered different if they contain either a different number of chickens, a different number of cows, or both.
@@ -37,3 +38,16 @@ La solucion es:
   
   
 Dicho problema es *casi* el mismo planteamiento, con la diferencia de que en el actual problema nos pide la cantidad de *diferentes* configuraciones posibles.
+### ¿Que significa *configuraciones posibles*?
+Dos configuraciones son diferentes si ambas tienen una cantidad diferente de pollos, de vacas o ambas. Tambien es importante destacar que pueden exisitir 0 vacas o 0 pollos
+Casos simple:
+$$
+n = 8, \text{Configuraciones: 3 (2 Vacas, 4 Pollos, 1 Vaca y 2 Pollos)}\\
+n = 4, \text{Configuraciones: 2 (1 Vaca, 2 Pollos)}\\
+n = 14, \text{Configuraciones: 4 (3 Vacas y 1 Pollo, 7 Pollos, 2 Vacas y 3 Pollos, 1 Vaca y 5 Pollos)}
+$$
+
+Lo pueden ver?, hay detalles importantes para resolver el problema y es saber ¿Cuantas vacas caben en n? y otro importante, cada vez que quitamos una vaca, se suman dos pollos! jjsjsjs, pero, solo es suficiente con saber cuantas vacas caben en n y tomar en cuenta el caso de 0 vacas!. Entonces, formalmente la respuesta seria
+$$sol=\frac{n}{4}$$
+**Peroooo...**, esto solo funciona cuando *n* es par! ¿Porque?, veamos que pasa cuando sumamos la cantidad de patas que puede haber en total:
+$$ 4v + 2p = x, \text{Donde v es vacas y p es pollos}$$
