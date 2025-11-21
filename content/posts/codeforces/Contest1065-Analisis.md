@@ -49,5 +49,15 @@ $$
 
 Lo pueden ver?, hay detalles importantes para resolver el problema y es saber ¿Cuantas vacas caben en n? y otro importante, cada vez que quitamos una vaca, se suman dos pollos! jjsjsjs, pero, solo es suficiente con saber cuantas vacas caben en n y tomar en cuenta el caso de 0 vacas!. Entonces, formalmente la respuesta seria
 $$sol=\frac{n}{4}$$
+
+### Observacion
+
 **Peroooo...**, esto solo funciona cuando *n* es par! ¿Porque?, veamos que pasa cuando sumamos la cantidad de patas que puede haber en total:
-$$ 4v + 2p = x, \text{Donde v es vacas y p es pollos}$$
+$$
+ 4v + 2p = x, \text{Donde v es vacas y p es pollos}\\
+ \text{Notese que x siempre sera par debido a la suma de productos pares:)}
+$$
+Por lo tanto, no podemos tener a *n* como impar ya que esto implicaria que haya *una patita de mas*, UNA SOLA ¿De quien?, no se, un pollito sin patita o una vaca sin 3 patitas, quizas, pero el problema no menciona eso jajaja. Ademas, al inicio de problema se menciona eso y que solo viven vacas y pollos. listo!
+
+### Errores
+Envie 2 soluciones, la primera incorrecta, ¿Cual fue mi error?, tenia el *caso base* $Si x=3 : sol = 0$, cosa que es incorrecta jajaja, pero, porque hice eso?. *Mal analisis del problema y por las prisas de resolverlo rapido*, no pense en otros casos y no analice lo suficientemente bien el problema en casos no pares, ademas de que al inicio no habia entendido tan bien el detalle de configuraciones y como dato extra, llegue a la respuesta de $\frac{n}{4}+1$ a pura observacion de los ejemplos jajaja.
