@@ -2,6 +2,8 @@
 date: '2025-11-20'
 draft: false
 title: 'Codeforces- Contest1065 Analisis'
+ShowToc: true
+TocOpen: true
 ---
 
 ![Pinguino](/images/pinguino_pensando.webp)
@@ -62,6 +64,33 @@ Por lo tanto, no podemos tener a *n* como impar ya que esto implicaria que haya 
 ### Errores
 Envie 2 soluciones, la primera incorrecta, ¿Cual fue mi error?, tenia el *caso base* $Si x=3 : sol = 0$, cosa que es incorrecta jajaja, pero, porque hice eso?. *Mal analisis del problema y por las prisas de resolverlo rapido*, no pense en otros casos y no analice lo suficientemente bien el problema en casos no pares, ademas de que al inicio no habia entendido tan bien el detalle de configuraciones y como dato extra, llegue a la respuesta de $\frac{n}{4}+1$ a pura observacion de los ejemplos jajaja.
 
+### Codigo
+```cpp
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+void solve(){
+    
+    int x; cin>>x;
+    if(x%2!=0) cout<<0;
+    else cout<<(x/4)+1;
+    cout<<'\n';
+}
+ 
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+ 
+    int t; cin>>t;
+    while(t--){
+        solve();
+    }
+ 
+    return 0;
+}
+```
+
 
 ## B. Yuu Koito and Minimum Absolute Sum
 [Link](https://codeforces.com/contest/2171/problem/B)
@@ -114,6 +143,7 @@ A este tipo de sumatorias se le conoce como *Sumas telescópicas*, formalmente, 
 
 Si continuamos analizando con diferentes valores para *n* siempre obtendremos lo mismo, que es lo siguiente:
 $R = a_n - a_0$
+
 Por lo tanto, todo se reduce a minimizar dicha resta!
 Sin embargo, dado a que ambos valores pueden ser o no -1, abordaremos diferentes casos, que son los siguientes:
 $a_n = -1 \quad \text{y} \quad a_0 = -1\ : \\$
