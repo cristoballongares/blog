@@ -64,7 +64,160 @@ Envie 2 soluciones, la primera incorrecta, ¿Cual fue mi error?, tenia el *caso 
 
 
 ## B. Yuu Koito and Minimum Absolute Sum
+[Link](https://codeforces.com/contest/2171/problem/B)
 El problema es el siguiente:
+> You are given a partially filled array of nonnegative integers $a_1, a_2, \dots, a_n$, where blank elements are denoted with $-1$. You would like to fill in the blank elements with nonnegative integers, such that the absolute value of the sum of the elements in its difference array is minimized.
+>
+> More formally, let $b$ be the array of length $n - 1$ such that $b_i = a_{i+1} - a_i$ for all $1 \le i \le n - 1$. Find the minimum possible value of $|b_1 + b_2 + \dots + b_{n-1}|$, across all possible ways to fill in the blank elements of $a$.
+>
+> Additionally, output the array that achieves this minimum. If there are multiple such arrays, output the one that is **lexicographically smallest**$^*$.
+>
+> $^*$For two arbitrary arrays $c$ and $d$ of length $n$, we say that $c$ is *lexicographically smaller* than $d$ if there exists an index $i$ ($1 \le i \le n$) such that $c_j = d_j$ for all $j < i$, and $c_i < d_i$. In other words, $c$ and $d$ differ in at least one index, and at the first index at which they differ, $c_i$ is smaller than $d_i$.
+>
+> ### Input
+>
+> The first line contains a single integer $t$ ($1 \le t \le 10^4$) — the number of test cases.
+>
+> The first line of each test case contains a single integer $n$ ($2 \le n \le 2 \cdot 10^5$).
+>
+> The second line of each test case contains $n$ integers, $a_1, a_2, \dots, a_n$ ($-1 \le a_i \le 10^6$).
+>
+> It is guaranteed that the sum of $n$ over all test cases does not exceed $2 \cdot 10^5$.
+>
+> ### Output
+>
+> For each test case, on the first line, output the minimum possible value of $|b_1 + b_2 + \dots + b_{n-1}|$. Then, on the second line, output $n$ integers, the values of $a_1, a_2, \dots, a_n$ in the lexicographically smallest array achieving this minimum.
+
+### Detalles a destacar
+Podemos *reducir* el output requerido de la siguiente forma:
 $$
-\text{You are given a partially filled array of nonnegative integers} a_1,a_2, \text{where blank elements are denoted with −1 . You would like to fill in the blank elements with nonnegative integers, such that the absolute value of the sum of the elements in its difference array is minimized.}
+\sum_{i=0}^{n-2} a_{i+1} - a_i
 $$
+Como tal no seria necesario crear un arreglo *b* con aquellos valores, con esto ahorrariamos espacio
+¿Porque esto sirve?, bueno, primero solo nos piden dos cosas
+1.- El menor valor posible del resultado de $\sum_{i=0}^{n-2} a_{i+1} - a_i$
+2.- Imprimir los valores del arreglo *a*, de tal manera que los valores de este hagan que sea lexicografimente el menor de todos. En resumen, si se obtiene una misma respuesta con diferentes valores, imprimir el lexicograficamente mejor.
+3.- Los valores de *b* tienen que ser *enteros no negativos*, por lo tanto, todo $a_i >= 0$
+
+### Solucion! (:
+Primero, como buena practica empezamos analizando lo mas sencillo, casos faciles, por ejemplo con $n = 5$, analicemos, ¿Como se veria la sumatoria?
+$$
+R = \sum_{i=0}^{3} a_{i+1} - a_i \\ 
+R = (a_1 - a_0) + (a_2 - a_1) + (a_3 - a_2) + (a_4 - a_3) \\
+\text{Simplificando... }\\
+R = (\cancel{a_1} - a_0) + (\cancel{a_2} - \cancel{a_1}) + (\cancel{a_3} - \cancel{a_2}) + (a_4 - \cancel{a_3}) \\
+R = a_4 - a_0
+$$
+Increible!, todo se reduce a dos valores sencillos, el inicio y el fin!.
+A este tipo de sumatorias se le conoce como *Sumas telescópicas*, formalmente, su definicion es la siguiente:
+> Una suma telescopica es una serie de términos que se cancelan parcialmente entre sí, dejando solo el primer y el último término para obtener el resultado final
+
+Si continuamos analizando con diferentes valores para *n* siempre obtendremos lo mismo, que es lo siguiente:
+$R = a_n - a_0$
+Por lo tanto, todo se reduce a minimizar dicha resta!
+Sin embargo, dado a que ambos valores pueden ser o no -1, abordaremos diferentes casos, que son los siguientes:
+$a_n = -1 \quad \text{y} \quad a_0 = -1\ : \\$
+> $ a_n = -0 \ y \ a_0 = 0$
+
+\*Notese que aca si o si se cumple el segundo detalle mencionado anteriormente:) (Arreglo *a* lexicograficamente menor)
+
+$a_n \neq -1 \quad \text{y} \quad a_0 = -1 :$
+> $a_0 = a_n$
+
+$a_n = -1 \quad \text{y} \quad a_0 \neq -1 :$
+> $a_n = a_0$
+
+
+Para el resto de elementos, (Los que no son $a_n$ y $a_0$) su valor debe ser $0$, de esta forma, estariamos cumpliendo con el detalle de que debe ser lexicograficamente menor!
+
+Al hacer los cambios correspondientes, deberemos imprimir:
+$a_n - a_0$ (Una vez modificados, claro)
+Seguido de todos los valores del arreglo *a* (:
+
+### Codigo
+
+### Conclusion
+La solucion se centra en si conocemos o no el primer y ultimo valor, el resto de valores no importa dado a que *b* resulta en una *Suma telescopica*
+
+## C1. Renako Amaori and XOR Game (easy version) ( Mi favorito :p)
+[Link](https://codeforces.com/contest/2171/problem/C1)
+
+### Codigo
+```cpp
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void solve(){
+    int n; cin>>n;
+    vector<int> a(n);
+    vector<int> b(n);
+    
+    int score_a = 0, score_b = 0;
+    int tie = 0;
+
+    for(int &x:a){
+        cin>>x;
+        score_a^=x;
+    }
+    
+    for(int &x:b){
+        cin>>x;
+        score_b^=x;
+    }
+
+    if(score_a == score_b){
+        cout<<"Tie"; return ;
+    }
+
+    int j,i;
+
+    // cout<<"Score antes de jugar: "<<' '<<score_a<<' '<<score_b<<'\n';
+
+    bool turn = 1;
+    for(i=0;i<n;i++){
+        
+        // Solo haremos un intercambio si y solo si:
+        // - vamos perdiendo :p 
+        // - Nos conviene hacerlo, claro xD
+
+        if(turn){ // ajisai
+            if(score_a==0 &&( b[i]==1 && a[i]==0)){
+                score_a = 1;
+                score_b = 0;
+            } else if (score_a==0 &&( b[i]==0 && a[i]==1)){
+                score_a = 1;
+                score_b = 0;
+            }
+
+            turn = !turn;
+        } else {
+            if(score_b==0 &&( a[i]==1 && b[i]==0)){
+                score_b = 1;
+                score_a = 0;
+            }  else if (score_b==0 &&( a[i]==0 && b[i]==1)){
+                score_a = 0;
+                score_b = 1;
+            }
+            turn = !turn;
+        }
+
+    }    
+    // cout<<score_a<<' '<<score_b<<' ';
+    cout<<(score_a==1?"ajisai":"mai");
+
+    
+}
+
+int main(){
+    ios::sync_with_stdio(false); cin.tie(nullptr);
+
+    int t; cin>>t;
+    while(t--){
+        solve();
+        if(t>0)cout<<'\n';
+    }
+
+    return 0;
+}
+```
