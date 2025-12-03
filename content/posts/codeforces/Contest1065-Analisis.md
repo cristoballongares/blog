@@ -103,7 +103,7 @@ El problema es el siguiente:
 >
 > $^*$For two arbitrary arrays $c$ and $d$ of length $n$, we say that $c$ is *lexicographically smaller* than $d$ if there exists an index $i$ ($1 \le i \le n$) such that $c_j = d_j$ for all $j < i$, and $c_i < d_i$. In other words, $c$ and $d$ differ in at least one index, and at the first index at which they differ, $c_i$ is smaller than $d_i$.
 >
-> ### Input
+> Input
 >
 > The first line contains a single integer $t$ ($1 \le t \le 10^4$) — the number of test cases.
 >
@@ -113,7 +113,7 @@ El problema es el siguiente:
 >
 > It is guaranteed that the sum of $n$ over all test cases does not exceed $2 \cdot 10^5$.
 >
-> ### Output
+> Output
 >
 > For each test case, on the first line, output the minimum possible value of $|b_1 + b_2 + \dots + b_{n-1}|$. Then, on the second line, output $n$ integers, the values of $a_1, a_2, \dots, a_n$ in the lexicographically smallest array achieving this minimum.
 
