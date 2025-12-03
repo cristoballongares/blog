@@ -110,7 +110,7 @@ R = a_4 - a_0
 $$
 Increible!, todo se reduce a dos valores sencillos, el inicio y el fin!.
 A este tipo de sumatorias se le conoce como *Sumas telescópicas*, formalmente, su definicion es la siguiente:
-> Una suma telescopica es una serie de términos que se cancelan parcialmente entre sí, dejando solo el primer y el último término para obtener el resultado final
+> *Una suma telescopica es una serie de términos que se cancelan parcialmente entre sí, dejando solo el primer y el último término para obtener el resultado final*
 
 Si continuamos analizando con diferentes valores para *n* siempre obtendremos lo mismo, que es lo siguiente:
 $R = a_n - a_0$
