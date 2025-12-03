@@ -61,3 +61,10 @@ Por lo tanto, no podemos tener a *n* como impar ya que esto implicaria que haya 
 
 ### Errores
 Envie 2 soluciones, la primera incorrecta, ¿Cual fue mi error?, tenia el *caso base* $Si x=3 : sol = 0$, cosa que es incorrecta jajaja, pero, porque hice eso?. *Mal analisis del problema y por las prisas de resolverlo rapido*, no pense en otros casos y no analice lo suficientemente bien el problema en casos no pares, ademas de que al inicio no habia entendido tan bien el detalle de configuraciones y como dato extra, llegue a la respuesta de $\frac{n}{4}+1$ a pura observacion de los ejemplos jajaja.
+
+
+## B. Yuu Koito and Minimum Absolute Sum
+El problema es el siguiente:
+$$
+\text{You are given a partially filled array of nonnegative integers} a_1,a_2, \text{where blank elements are denoted with −1 . You would like to fill in the blank elements with nonnegative integers, such that the absolute value of the sum of the elements in its difference array is minimized.}
+$$
