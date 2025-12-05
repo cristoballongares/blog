@@ -202,9 +202,11 @@ Ambos van perdiendo, el jugador del turno $i = 3$ hace un swap y terminan con el
 Entonces... a partir de esas pruebas, lo mismo pasara con otros casos de empate, por lo tanto, **NO ES OPTIMO** hacer cambios cuando ambos scores son iguales ya que siempre termina en un empate, sin importar los cambios que se hagan
 
 #### Sin empate, ambos scores difieren
-
-
-
+Este caso sucede cuando los scores de *a y b* son diferentes, mi enfoque es el siguiente
+1.- Recorrer cada uno de los *n* elementos de *a* y *b* simultaneamente
+2.- Si $a_i \neq b_i$ hacemos un *swap* **SIEMPRE Y CUANDO SEA CONVENIENTE**, anteriormente explicamos cuando lo es.
+3.- Si hacemos un *swap*, le damos el punto ganador al jugador de aquel turno
+4.- Al final, simplemente con un condicional verificamos quien tiene el punto ganador, fin.
 
 ### Codigo
 ```cpp
@@ -267,7 +269,6 @@ void solve(){
     // cout<<score_a<<' '<<score_b<<' ';
     cout<<(score_a==1?"ajisai":"mai");   
 }
-
 int main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
 
@@ -280,3 +281,104 @@ int main(){
     return 0;
 }
 ```
+### Una solcuin mejor
+La anterior solucion *no es la mas optima* :c,  para empezar, si analizamos mejor, el score final se puede represtar de la siguiente forma
+$$ score = (a_0 \oplus a_1 \oplus a_1 ... \oplus a_n ) \oplus (b_0 \oplus b_1 \oplus b_1 ... \oplus b_n ) $$
+Si $score = 0$, es un empate, de lo contrario, existe una forma de desempatar.
+La manera de desempatar es genial!, me gusta muchisimo, no pertenece a la solucion oficial.
+Si analizamos otro poco, para saber quien gana, basta con comprobar, *¿Quien hace el ultimo swap?* y listo, es todo jaja.
+Para optimizar esto empezamos a recorrer ambos arreglos desde la ultima posicion, si el siguiente caso:
+$$ a_i \oplus b_i = 1 (\text{Aquello es igual a } a_i \neq b_i)$$
+Entonces, guardamos el indice en donde sucede esto y salimos del ciclo que lo reccore!, por ultimo, simplemente hacemos verificamos
+> ¿El indice en donde los elementos son diferentes es par o impar?
+
+Y listo, si es par, gana Mai, de lo contrario, Ajisai.
+
+**¿Porque solo basta con comprobar quien hace el ultimo swap?**
+Por que ese ultimo swap significa que ya no se puede hacer ningun otro cambio despues de ese indice, por lo tanto, aquel indice en donde se hace el intercambio es el ultimo, es decir, quien hace el movimiento ganador.
+
+### Dato extra:p
+A este tipo de juegos, se le conoce como *Juego Determinista de Información Perfecta*, en ellos no existe el azar y todos los jugadores conocen en todo momento el estado completo del juego y las acciones previas de los demás. Ejemplos de juegos de este tipo son el *Ajedrez, Go, Damas, Gato, etc*.
+
+Por lo tanto, este problema se puede resolver super facil si conocemos sobre *Teoria de Juegos*, la solucion se centra unicamente en dos casos, el empate y no empate. Para el segundo caso basta con buscar un *estado crítico* que nos de la victoria, ¿Y cual es ese estado critico?, *el quien haga el ultimo swap*.
+
+Ademas, otra cosa, en el enunciado del problema nos dice algo como *Determine the outcome... with optimal play*, es decir, asusimos que ambos jugadores son unos genios omniscientes que leen mentes y ven el futuro, por lo tanto... ¿Que implica esto?, implica que el juego ya esta decidido desde el inicio, el resultado es simplemente una propiedad matematica...
+
+Afortunadamente, este problema es sencillo, es solo logica, ad-hoc puro jajaja, si vamos a problemas que involucran *Impartial Games*, como juegos tipo *Nim* seria muchisimo mas complicado.
+
+
+### Demostracion del modelo matematico
+> Antes, esta demostracion NO ES MIA, la saque de internet, creditos a su respectivo autor!.
+
+**1. Definiciones Formales**
+Sea $n$ el número total de turnos. Definimos dos conjuntos iniciales $A$ y $B$ de longitud $n$:
+$$A = \{a_1, a_2, \dots, a_n\} \quad , \quad B = \{b_1, b_2, \dots, b_n\}$$
+Donde $a_i, b_i \in \{0, 1\}$.
+
+El juego consiste en $n$ turnos. En el turno $i$ ($1 \le i \le n$), el jugador activo puede elegir una de dos operaciones:
+1.  **Mantener:** $(a_i, b_i) \to (a_i, b_i)$
+2.  **Intercambiar:** $(a_i, b_i) \to (b_i, a_i)$
+
+Definimos el **Puntaje Final** ($S$) de cada jugador como la suma XOR de sus elementos al finalizar el turno $n$:
+$$S_A = \bigoplus_{i=1}^{n} a'_i \quad , \quad S_B = \bigoplus_{i=1}^{n} b'_i$$
+
+La condición de victoria está dada por:
+* Si $S_A > S_B \implies$ Gana Ajisai.
+* Si $S_B > S_A \implies$ Gana Mai.
+* Si $S_A = S_B \implies$ Empate.
+
+---
+
+**2. Teorema de la Invariante Global**
+
+**Proposición:** La suma XOR total de todos los elementos en juego, denotada como $X_{total}$, es invariante respecto a cualquier operación realizada durante el juego.
+
+**Demostración:**
+El valor total es:
+$$X_{total} = \left( \bigoplus_{i=1}^{n} a_i \right) \oplus \left( \bigoplus_{i=1}^{n} b_i \right)$$
+
+En cualquier turno $i$, un intercambio simplemente permuta los valores entre el conjunto $A$ y el conjunto $B$. Debido a que la operación XOR es conmutativa y asociativa, el conjunto de valores sobre el que se opera globalmente permanece idéntico.
+$$a_i \oplus b_i = b_i \oplus a_i$$
+Por lo tanto, $S_A \oplus S_B = X_{total}$ es constante. $\blacksquare$
+
+**Corolario: Condición de Empate**
+Si $X_{total} = 0$, entonces:
+$$S_A \oplus S_B = 0 \implies S_A = S_B$$
+Esto demuestra que si la suma XOR total inicial es cero, el juego **siempre terminará en empate**, independientemente de la estrategia.
+
+---
+
+**3. Teorema del Turno Crítico (Estrategia Óptima)**
+
+Supongamos que $X_{total} \neq 0$. Esto implica que $S_A \neq S_B$, por lo que el empate es imposible. Dado que los puntajes son binarios ($0$ o $1$), uno será el ganador y el otro el perdedor.
+
+Definimos el **Índice Crítico** $k$ como el mayor índice tal que los valores en $A$ y $B$ son distintos:
+$$k = \max \{ i \mid a_i \neq b_i \}$$
+
+**Afirmación:** El jugador que posee el turno $k$ tiene una estrategia ganadora garantizada.
+
+**Demostración por Inducción Hacia Atrás:**
+
+1.  **Turnos irrelevantes ($i > k$):**
+    Para todo turno $j$ donde $j > k$, sabemos por definición que $a_j = b_j$.
+    La operación de intercambio $(x, x) \to (x, x)$ no altera el estado del juego. Por tanto, los turnos posteriores a $k$ no afectan el resultado.
+
+2.  **El Turno Decisivo ($i = k$):**
+    Consideremos el estado del juego justo antes del turno $k$. Sea $P$ el jugador activo en este turno.
+    El puntaje final de Ajisai, $S_A$, dependerá exclusivamente de la decisión tomada en $k$, dado que los turnos futuros son irrelevantes y los pasados son fijos.
+    
+    Como $a_k \neq b_k$, tenemos que $\{a_k, b_k\} = \{0, 1\}$.
+    El jugador $P$ tiene dos opciones que resultarán en dos posibles valores finales para $S_A$: un valor $v$ o su complemento $v \oplus 1$.
+    
+    * Si $P$ decide **no intercambiar**, el resultado final será $R_1$.
+    * Si $P$ decide **intercambiar**, el resultado final será $R_2$.
+    
+    Dado que se intercambian un 0 y un 1, $R_1 \neq R_2$. Uno de estos resultados corresponde a una victoria para $P$ y el otro a una derrota.
+    
+    Asumiendo juego óptimo, $P$ elegirá la opción que maximice su propio puntaje. Como $P$ tiene la "última palabra" efectiva del juego, su decisión sobrescribe cualquier ventaja obtenida por el oponente en los turnos $1 \dots k-1$.
+
+**Conclusión:**
+* Si $k$ es impar (turno de Ajisai) $\to$ Ajisai controla el resultado final $\to$ **Gana Ajisai**.
+* Si $k$ es par (turno de Mai) $\to$ Mai controla el resultado final $\to$ **Gana Mai**.
+
+---
