@@ -171,6 +171,40 @@ La solucion se centra en si conocemos o no el primer y ultimo valor, el resto de
 
 ## C1. Renako Amaori and XOR Game (easy version) ( Mi favorito :p)
 [Link](https://codeforces.com/contest/2171/problem/C1)
+En esta ocasion, paso por poner el enunciado del problma :b, se puede leer en el anterior link.
+### Observaciones
+1.- $a_i \text{ y } b_i$ solo pueden 1 o 0.
+2.- Si ambos alcanzan el mismo *score*, es empate
+3.- Solo se puede swapear si y solo si $a_i, b_j\quad i=j$
+4.- Ambos jugadores siempre juegan de la mejor forma, la mas optima.
+
+### Analisis
+
+#### ¿Se puede desampatar?
+Comenzemos con el empate, ¿Cuando sucede?, cuando ambos alcanzan el mismo score, pero... en caso de que al inicio haya un empate, ¿Hay forma de que alguno de los dos pueda ganar?, empecemos por un caso sencillo.
+*n = 4* *a: 0 0 1 0* y *b: 1 0 1 1* 
+
+Score a: $0\oplus0\oplus1\oplus0 = 1$
+Score b: $1\oplus0\oplus1\oplus1 = 1$
+
+Para ganar, tanto el jugador *a* como el jugador *b* tendrian que hacer un *swap* en una posicion en la que el score final cambie, es decir, en una posicion donde $a_i \neq b_i$, se supone, que de esta manerar el score cambiaria, probemos haciendo un swap en $i = 0$
+
+Score a: $1\oplus0\oplus1\oplus0 = 0$
+Score b: $0\oplus0\oplus1\oplus1 = 0$
+
+Notese que **no es conveniente realizar un swap cuando se va ganando, esto NO seria una forma optima de jugar** ya que *perjudica* el score, pero, ¿Y si ambos tienen un score de 0?, utilizaremos el arreglo anterior, probemos con un swap en $i = 3$
+
+Score a: $1\oplus0\oplus1\oplus1 = 1$
+Score b: $0\oplus0\oplus1\oplus0 = 1$
+
+Ambos van perdiendo, el jugador del turno $i = 3$ hace un swap y terminan con el mismo score.
+
+Entonces... a partir de esas pruebas, lo mismo pasara con otros casos de empate, por lo tanto, **NO ES OPTIMO** hacer cambios cuando ambos scores son iguales ya que siempre termina en un empate, sin importar los cambios que se hagan
+
+#### Sin empate, ambos scores difieren
+
+
+
 
 ### Codigo
 ```cpp
@@ -199,11 +233,8 @@ void solve(){
     if(score_a == score_b){
         cout<<"Tie"; return ;
     }
-
     int j,i;
-
     // cout<<"Score antes de jugar: "<<' '<<score_a<<' '<<score_b<<'\n';
-
     bool turn = 1;
     for(i=0;i<n;i++){
         
@@ -234,9 +265,7 @@ void solve(){
 
     }    
     // cout<<score_a<<' '<<score_b<<' ';
-    cout<<(score_a==1?"ajisai":"mai");
-
-    
+    cout<<(score_a==1?"ajisai":"mai");   
 }
 
 int main(){
