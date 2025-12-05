@@ -307,7 +307,7 @@ Ademas, otra cosa, en el enunciado del problema nos dice algo como *Determine th
 Afortunadamente, este problema es sencillo, es solo logica, ad-hoc puro jajaja, si vamos a problemas que involucran *Impartial Games*, como juegos tipo *Nim* seria muchisimo mas complicado.
 
 
-### Demostracion del modelo matematico
+### Analisis matematico
 > Antes, esta demostracion NO ES MIA, la saque de internet, creditos a su respectivo autor!.
 
 **1. Definiciones Formales**
