@@ -1,6 +1,5 @@
 ---
 date: '2025-12-25T21:44:06-06:00'
-draft: true
 title: 'LargestRectangleInHistogram'
 ---
 # Por fin
