@@ -1,6 +1,6 @@
 ---
 date: '2026-02-22T15:36:05-06:00'
-draft: true
+draft: false
 title: 'Semana 1, Analisis'
 ---
 
