@@ -101,17 +101,17 @@ sparse[0][2] = \min(1, 3) = 1 \\
 $$
 
 ## Construccion de la matriz paso a paso
-Hagamos una prueba con el siguiente arreglo, A = $[5,1,3,9,7,2]$. El tamaño es 6, por lo que calcularemos hasta $j = 2$ bloques, ya que un bloque de tamaño 8 (j = 3) excede la longitud del arreglo
+Hagamos una prueba con el siguiente arreglo, A = $[5,1,3,9,7,2]$. El tamaño es 6, por lo que calcularemos hasta $j = 2$ bloques, ya que un bloque de tamaño 8 ($j = 3$) excede la longitud del arreglo.
 
-#### Nivel 0 (\(j = 0\)) — Bloques de tamaño \(2^0 = 1\)
+#### Nivel 0 ($j = 0$) — Bloques de tamaño $2^0 = 1$
 
 Cada celda representa el mínimo de un bloque de tamaño 1.
 
-\[
+$$
 \text{ST}[i][0] = A[i]
-\]
+$$
 
-\[
+$$
 \begin{array}{c|c}
 i & j=0 \\
 \hline
@@ -122,24 +122,23 @@ i & j=0 \\
 4 & 7 \\
 5 & 2 \\
 \end{array}
-\]
+$$
 
 Este nivel simplemente copia el arreglo original.
 
 ---
 
-### Nivel 1 (\(j = 1\)) — Bloques de tamaño \(2^1 = 2\)
+### Nivel 1 ($j = 1$) — Bloques de tamaño $2^1 = 2$
 
 Ahora cada celda almacena el mínimo de dos elementos consecutivos.
 
 La transición es:
 
-\[
-\text{ST}[i][1] =
-\min(\text{ST}[i][0], \text{ST}[i+1][0])
-\]
+$$
+\text{ST}[i][1] = \min(\text{ST}[i][0], \text{ST}[i+1][0])
+$$
 
-\[
+$$
 \begin{array}{c|c}
 i & j=1 \\
 \hline
@@ -149,31 +148,29 @@ i & j=1 \\
 3 & \min(9,7)=\mathbf{7} \\
 4 & \min(7,2)=\mathbf{2} \\
 \end{array}
-\]
+$$
 
-No calculamos \(i=5\) porque un bloque de tamaño 2 empezando en 5 se sale del arreglo.
+No calculamos $i=5$ porque un bloque de tamaño 2 empezando en 5 se sale del arreglo.
 
 ---
 
-### Nivel 2 (\(j = 2\)) — Bloques de tamaño \(2^2 = 4\)
+### Nivel 2 ($j = 2$) — Bloques de tamaño $2^2 = 4$
 
 Ahora usamos bloques de tamaño 4.
 
 La fórmula general es:
 
-\[
-\text{ST}[i][j] =
-\min(\text{ST}[i][j-1], \text{ST}[i + 2^{j-1}][j-1])
-\]
+$$
+\text{ST}[i][j] = \min(\text{ST}[i][j-1], \text{ST}[i + 2^{j-1}][j-1])
+$$
 
-Para \(j=2\):
+Para $j=2$:
 
-\[
-\text{ST}[i][2] =
-\min(\text{ST}[i][1], \text{ST}[i+2][1])
-\]
+$$
+\text{ST}[i][2] = \min(\text{ST}[i][1], \text{ST}[i+2][1])
+$$
 
-\[
+$$
 \begin{array}{c|c}
 i & j=2 \\
 \hline
@@ -181,15 +178,15 @@ i & j=2 \\
 1 & \min(1,7)=\mathbf{1} \\
 2 & \min(3,2)=\mathbf{2} \\
 \end{array}
-\]
+$$
 
-Nos detenemos en \(i=2\) porque un bloque de tamaño 4 iniciando en 3 excedería los límites del arreglo.
+Nos detenemos en $i=2$ porque un bloque de tamaño 4 iniciando en 3 excedería los límites del arreglo.
 
 ---
 
 ### Tabla completa
 
-\[
+$$
 \begin{array}{c|c|c|c}
 i & 2^0 & 2^1 & 2^2 \\
 \hline
@@ -200,11 +197,11 @@ i & 2^0 & 2^1 & 2^2 \\
 4 & 7 & 2 & - \\
 5 & 2 & - & - \\
 \end{array}
-\]
+$$
 
 Donde:
 
-- Cada columna \(j\) representa bloques de tamaño \(2^j\)
+- Cada columna $j$ representa bloques de tamaño $2^j$
 - Cada celda guarda el mínimo del intervalo correspondiente
 - Los guiones indican posiciones inválidas
 
@@ -212,9 +209,9 @@ Donde:
 
 ### Complejidad
 
-- Preprocesamiento: \(O(n \log n)\)
-- Consulta RMQ: \(O(1)\)
-- Espacio: \(O(n \log n)\)
+- Preprocesamiento: $O(n \log n)$
+- Consulta RMQ: $O(1)$
+- Espacio: $O(n \log n)$
 
 Funciona directamente con operaciones **idempotentes** como:
 
@@ -222,11 +219,11 @@ Funciona directamente con operaciones **idempotentes** como:
 - máximo
 - gcd
 
-Una operación binaria \( f(x, y) \) es **idempotente** si cumple la siguiente propiedad:
+Una operación binaria $f(x, y)$ es **idempotente** si cumple la siguiente propiedad:
 
-\[
+$$
 f(x, x) = x
-\]
+$$
 
 Es decir, aplicar la operación sobre dos valores iguales no cambia el resultado.
 
@@ -236,59 +233,59 @@ Es decir, aplicar la operación sobre dos valores iguales no cambia el resultado
 
 #### Mínimo
 
-\[
+$$
 \min(x, x) = x
-\]
+$$
 
 Ejemplo:
 
-\[
+$$
 \min(5,5) = 5
-\]
+$$
 
 ---
 
 #### Máximo
 
-\[
+$$
 \max(x, x) = x
-\]
+$$
 
 Ejemplo:
 
-\[
+$$
 \max(7,7) = 7
-\]
+$$
 
 ---
 
 #### Máximo Común Divisor (gcd)
 
-\[
+$$
 \gcd(x, x) = x
-\]
+$$
 
 Ejemplo:
 
-\[
+$$
 \gcd(12,12) = 12
-\]
+$$
 
 ---
 
-### Ejemplo de operación NOO idempotente
+### Ejemplo de operación NO idempotente
 
 #### Suma
 
-\[
+$$
 x + x = 2x
-\]
+$$
 
 Claramente:
 
-\[
+$$
 f(x,x) \neq x
-\]
+$$
 
 Por lo tanto, la suma **no es idempotente**.
 
