@@ -15,7 +15,7 @@ title: 'Semana 1, Analisis'
    - Sparse table
 
 ## Lista de problemas
-No la recopile jaja, para la otra asi sera
+No la recopile jaja, para la otra si los recopilo
 
 # Sparse Table, explicación
 La Sparse Table (o tabla dispersa) es una *estructura de datos* que sirve para responder consultas de rango, tales como hallar el minimo, M.C.D o el maximo en arreglos estaticos, es decir, aquellos que no cambian. Todo esto en tiempo constante $O(1)$ !, todo esto requiere de una precomputacion de costo $O(nlogn)$
@@ -31,6 +31,30 @@ Al guardar unicamente los bloques que son potencias de 2, la cantidad maxima que
 
 ### Construyendo nuestra Sparse Table
 Algo muy bonito de esta estructura de datos es que utiliza *programación dinámica* y si aún no sabemos sobre este tema (como yo), aprender esta ED sin duda es un gran comienzo en la DP.
-En lugar de volver aa calcular rangos grandes desde 0, utilizamos la información de rangos mas pequeños que obtendremos con anterioridad.
-La principal idea es la siguiente:
+En lugar de volver aa calcular rangos grandes desde 0, utilizamos la información de rangos mas pequeños que obtendremos con anterioridad. 
+La idea principal es la siguiente:
 $$\text{Un bloque de tamaño } 2^j \text{ se calcula uniendo dos bloques adyacentes de tamaño } 2^{j-1}$$
+Ejemplo con j = 2 ($2^2 = 4$)
+$$
+\begin{array}{c}
+\begin{array}{|c|c|c|c|}
+\hline
+\phantom{xx} & \phantom{xx} & \phantom{xx} & \phantom{xx} \\
+\hline
+\end{array} \quad 2^2 = 4 \\
+\swarrow \qquad \qquad \searrow \\
+\underbrace{
+    \begin{array}{|c|c|}
+    \hline
+    \phantom{xx}&\phantom{xx} \\
+    \hline
+    \end{array}
+    \qquad \qquad
+    \begin{array}{|c|c|}
+    \hline
+    \phantom{xx} & \phantom{xx} \\
+    \hline
+    \end{array}
+}_{\begin{array}{c} 2^{2-1} \\ 2 \end{array}}
+\end{array}
+$$
