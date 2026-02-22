@@ -58,7 +58,7 @@ int main(){
 
     int t; cin>>t;
     while(t--){
-        int a,b;
+    int a,b;
         cin>>a>>b;
         cout<<binpow(a,b,10)<<'\n';
     }
