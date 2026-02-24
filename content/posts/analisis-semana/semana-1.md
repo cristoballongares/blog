@@ -341,7 +341,7 @@ Visualmente, si consultamos el rango $[1, 5]$ (longitud 5, por lo que $j = 2$ y 
 
 $$
 \underbrace{
-    \overbrace{A[1] \quad A[2] \quad A[3] \quad A[4]}^{\text{Bloque Izq: } \text{ST}[1][2]} \quad A[5]
+    \overbrace{A[1] \quad A[2] \quad A[3] \quad A[4]}^{\text{Bloque Izq: } \text{ST}[   1][2]} \quad A[5]
 }_{\text{Rango total } [1, 5]}
 $$
 $$
@@ -426,5 +426,87 @@ int query(int l, int r, const vector<vector<int>>& sparse, const vector<int>& in
     // comparamos los valores
     return min(input[leftI],input[rightI]);
     
+}
+```
+
+# Gepetto and Pizzas
+Solving this problem was very satisfying!, I really like solving problems that involve recursion!.
+A quick summary of this problem is: We have $n$ ingredients and we need to find the total number of all possible valid pizza *combinations* such that none of the $m$ pairs of ingredients $a,b$ are present in the actual combination of ingredients
+## Mistakes I made while solving
+When i was started to solve this problem i made a mistake while reading the description because i believed that combinations could only be at most 2 ingredients and that is completely false!
+
+For example if we have $3$ ingredients and $2$ restricted pairs of ingredients $[1,2]$ and $[2,3]$, the possible combinations are:
+$\{\}, \{1\}, \{2\}, \{3\}, \{1,3\}$ **Note that a pizza without ingredients counts a combination!**
+
+Another mistake i made was not analizing the time complexity and the best strategy to attack this problem, the restriccions are: $1<=n<=20, 1 <= M <= 400$ and for the ingredientes $1<=a,b<=N$.
+Can u notice it? yes, N is veryyy small and not noticing that is a huge mistake!, beacuase if we analize the constraints, we realize we can use algorithms with $n^2, \ n^3,$ **$2^n$**.
+
+## Solution
+After a looong time thinking about the solution, the best strategy is to use backtracking!.
+The solution is easy. We need a global vector to store the current combionation of ingredients if the current combination is valid, we increment another global variable (named total) by 1. If a combination is not possible we backtrack and try with another ingredient.
+We need to repite this procces until the actual ingredient is greather than $n$
+
+---
+
+## Visualization of the algorithm
+![Pizarron](/mi-blog-dev/static/images/semana-1/pizarron.jpg)
+
+## Code
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using lli = long long int;
+
+int n, m;
+bool bad[21][21];
+int total = 0;
+
+vector<int> pizza_actual;
+
+void buscar(int id) {
+    if(id>n){
+        total++;
+        return;
+    }
+    buscar(id+1);
+
+    bool ok = true;
+    for(int ing:pizza_actual) {
+        if(bad[id][ing]) {
+            ok=false;
+            break;
+        }
+    }
+
+    if(ok){
+        pizza_actual.push_back(id); // metemos
+        buscar(id+1); // seguimos buscando con el siguiente
+        pizza_actual.pop_back(); // lo sacamos para probar otras
+    }
+}
+
+void solve(){
+    cin>>n>>m;
+    int t = m;
+    while(t--){
+        int x,y;cin>>x>>y;
+        bad[x][y] = true;
+        bad[y][x] = true;
+    }
+
+    buscar(1);
+    cout<<total;
+}
+
+
+int main(){
+    ios::sync_with_stdio(false); cin.tie(nullptr);
+    
+    int t=1; 
+    // cin>>t;
+    while(t--){solve();cout<<'\n';}
+
+    return 0;
 }
 ```
