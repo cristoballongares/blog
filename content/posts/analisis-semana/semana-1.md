@@ -449,7 +449,8 @@ We need to repite this procces until the actual ingredient is greather than $n$
 ---
 
 ## Visualization of the algorithm
-![Pizarron](/mi-blog-dev/static/images/semana-1/pizarron.jpg)
+![Pizarron](/images/semana-1/pizarron.jpg)
+
 
 ## Code
 ```cpp
