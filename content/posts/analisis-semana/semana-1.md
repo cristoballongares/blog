@@ -429,7 +429,7 @@ int query(int l, int r, const vector<vector<int>>& sparse, const vector<int>& in
 }
 ```
 
-# Gepetto and Pizzas
+# [Gepetto and Pizzas](https://dmoj.ca/problem/coci15c2p2)
 Solving this problem was very satisfying!, I really like solving problems that involve recursion!.
 A quick summary of this problem is: We have $n$ ingredients and we need to find the total number of all possible valid pizza *combinations* such that none of the $m$ pairs of ingredients $a,b$ are present in the actual combination of ingredients
 ## Mistakes I made while solving
@@ -439,7 +439,7 @@ For example if we have $3$ ingredients and $2$ restricted pairs of ingredients $
 $\{\}, \{1\}, \{2\}, \{3\}, \{1,3\}$ **Note that a pizza without ingredients counts a combination!**
 
 Another mistake i made was not analizing the time complexity and the best strategy to attack this problem, the restriccions are: $1<=n<=20, 1 <= M <= 400$ and for the ingredientes $1<=a,b<=N$.
-Can u notice it? yes, N is veryyy small and not noticing that is a huge mistake!, beacuase if we analize the constraints, we realize we can use algorithms with $n^2, \ n^3,$ **$2^n$**.
+Can u notice it? yes, $N$ is veryyy small and not noticing that is a huge mistake!, beacuase if we analize the constraints, we realize we can use algorithms with $n^2, \ n^3,$ **$2^n$**.
 
 ## Solution
 After a looong time thinking about the solution, the best strategy is to use backtracking!.
@@ -508,6 +508,95 @@ int main(){
     // cin>>t;
     while(t--){solve();cout<<'\n';}
 
+    return 0;
+}
+```
+
+# Hairdresser
+For this problem i cant share the link :p, sry for that.
+But i can write a quick summary!. There is a *queue* in hairdresser salon, and the time it takes to serve a client is **20 minutes**. If a client arrives when the hairdresser is working, the client joins the queue only if their *impatience parametrer* is greater than or equal to the current number of clients in the queue. If the client is patient enought, they join the queue; otherwise they leave inmediatly
+For each client we need print his hour and minuts when they leaves the salon!.
+Here we have 2 conditions
+   - If a client arrives and his *impatience parametrer* is greather or equal than the clients in the queue, they will join the line and finish being serverd exactly 20 minutes after the previous last client finishes
+   - But if a client arrives and his impatiencie parametrer is sctrictly less than the number of clients in the queue, then leaves inmediatly. Therefore, their exit time will be exact hour and minute thery arrived.
+
+Restrictions: $1<=n<=100$, $0<= hour <= 23$, , $0<= minute <= 59$
+The problem guarantees that all clients will be serverd before midnight!
+
+## Mistakes i made
+The biggest mistake i made while coding the solution was using a stack instead of a queue. If we use a stack to simulate this problem, we are complety incorrect because the problem specifies that the line behaves like a queue (FIFO)! that was my big mistake:c
+
+Antoher mistake that i made was not simuling the queue properly, i only poor temporary variables instead of a real data structure.
+
+The last mistake was working with hours and minutes separately (That is "correct") but is much simpler to work with only total minutes!.
+For example, an arrival time $10:5$ can be translate into total minutes: $60*10\ + 5=605 \ minutes$
+
+## Solution
+To solve this problem we just need to simulate the procces with a queue to keep track of the exit times.
+For every client that arrives, we do the following:
+- Convert thei arrival hour and minutes into total minutes
+- Check the queue
+    - is it not empty and the front element's exit time are less or equal to the arrival time of the current client?
+      - Yes: delate (pop) the top client from the queue. Keep popping until either queue becomes empty or the fronts client's exit time is strictly greather than the currents arrival time.
+Now, if the current size of the queue is strictly greather than the impateience parametrer of the client, the current client leaves. We just need print theri arrival hour and minutes.
+Else, we calculate:
+- Start time of the current client
+  - if queue is empty: start time their arrival time in minutes
+  - if queue isnt empty: start time is the maximum value between their arrival time and the exit time of the last client that entered the queue
+- Exit time of the current client: start time + 20 minutes :p
+- push this new exit time into the queue
+- print the hour of their exit (exit/60) and the minutes of their exit (exit%60)
+- and that's all xD
+
+## Code
+Look easy, soo easy but it took me 10 tries to solve this problem lol
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using lli = long long int;
+ 
+void solve(){
+    
+}
+ 
+ 
+int main(){
+    ios::sync_with_stdio(false); cin.tie(nullptr);
+    
+    int n; 
+    cin>>n;
+    
+    queue<int> s; 
+    
+    while(n--){
+        int h, m, i;
+        cin>>h>>m>>i;
+ 
+        int total = h*60+m;
+ 
+        while(!s.empty() && s.front()<=total){
+            s.pop();
+        }
+ 
+        
+        if(s.size()>i){
+            cout<<h<<' '<<m;
+        } else {
+            int start = s.empty() ? total : max(total, s.back());
+            int exit = start + 20;
+ 
+            s.push(exit);
+            cout<<(exit/60)<<' '<<(exit%60);
+        }
+ 
+ 
+    
+ 
+        cout<<'\n';
+ 
+    }
+ 
     return 0;
 }
 ```
