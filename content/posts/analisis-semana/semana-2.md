@@ -5,19 +5,20 @@ title: 'Second and Third Week :p'
 
 # Introduction
 
-This weeks has been mmmhh, hard?, probably xD, idk, but both week was very fun!
-Lo malo is that i have 6 pending problems for make his editorial xD, not problem, i can, its very fun do it!
+These two weeks have been mmmhh, rough?, maybe xD, idk, but what I do know is that they were a lot of fun!
+LI ended up with 6 problems pending their editorial, but no worries, I actually enjoy writing them. So lets get to it!
+
 
 # Goals of the weeks
  - [ ] Do 30 problems
    - I do 25/30 :c
  - [x] Escribir sobre los 3 problemas mas dificiles de la semana (both weeks)
-   - Product and GCD
-   - Knight moves grid
-   - Serval and Kaitenzushi Buffet
-   - Imbalanced Array
-   - Reverse Card
-   - Subarray Distinct Values
+  - [x] Product and GCD
+  -  [ ] Knight moves grid
+  - [x] Serval and Kaitenzushi Buffet
+  - [x] Imbalanced Array (Soo easy, just two monotonic stack :p, not worth a full editorial)
+   - [ ] Reverse Card (More number theory, i really enjoy that, im falling in love with it)
+   - [ ] Subarray Distinct Values (DP!, thats scary O.o)
 
 # Product and GCD
 This problem is so beautiful!, we have $N$ integers $a_1,a_2,...,a_n$ not less than 1. This values are uknow but $a_1*a_2*...*a_n = P$.
@@ -26,7 +27,7 @@ We need find the maximum possible greatest common divisor of $a_1,a_2,...,a_n$
 - $1\leq N \leq 10^{12}$
 - $1\leq P \leq 10^{12}$
 ## Analisis
-we discart from the solutions everyone that have $O(n)$ in his, because is guarrented TLE 
+we discard the solutions that have $O(n)$ in his, because is guarrented TLE 
 
 First, reescribe the expression.
 $gcd(a_1,a_2,...,a_n) = g$, then, 
@@ -45,20 +46,15 @@ $$ a \mid b \iff f_i \leq e_i \ \text{para todo primo }p_i$$
 
 Sabiendo esto, buscaremos todos los $f_i$ de $g$ que sean menores o iguales a $e_i$ de $p$. Sin embargo, no olvidemos que $g$ es $g^n$, por lo tanto para cada exponente de $p$ se debe cumplir para cada exponente de $g$ lo siguiente:
 
-$g^n = p_1^{e_1} * ... * p_n^{e_n}$, despejando a $g$
-
-$g = p_1^{\frac{e_1}{n}} * ... * p_n^{\frac{e_n}{n}}$
-
-Por lo tanto, al encontrar los exponentes de los primos de $g$ lo haremos de la siguiente forma:
-
 $ f_i \leq \lfloor \frac{e_i}{n}  \rfloor $.
+
+
 
 ### Resumen
 Encontramos y guardamos los factores primos de $P$, por cada uno de estos encontramos el $p_i^{f_i}$ mas grande posible, los multiplicamos y esa será la respuesta.
 
 # Knight Moves Grid
-Aun no le entiendo :c
-
+Construyendo solucion... 
 # Serval and Kaitenzushi Buffet
 Resolver este problema fue un reto al inicio porque pese a que ya habia resuelto varios problemas del mismo tema *[Regret Greedy](https://codeforces.com/blog/entry/140933?#comment-1258111)* (No hay mucha información sobre este topico, sin embargo, es muy interesante) al inicio se me complicó construir la solución.
 El problema se resume en: Tenemos $k$ piezas de sushi, la $i-esima$ pieza tiene un nivel de $d_i$ (Que tan rico está o algo asi). Tenemos solo $n$ minutos para comernos los sushi, sin embargo, enl $i-esimo$ minuto solo podemos comer la $i-esima$ pieza. Al inicio empezamos con una variable inicializada en 0, llamada $r$
@@ -89,12 +85,47 @@ Cada plato de sushi tiene un nivel de dulzura (llamado $d_i$), hay $k$ sushis po
 - Al final, $r$ debe ser 0
 - Debemos *maximizar la dulzura total obtenida* de los sushis que tomamos
 
-## Observaciones
+## Solucion
 Cada pieza de sushi nos cuesta $k+1$ minutos (Tiempo en digerir y agarrar).
-A partir de $n-k$ **ya no podems agarrar ningun plato de sushi**
-- Pero, ¿por qué?: Cada plato de sushi nos toma $1$ minuto en digerirlo, por lo tanto al llegar a $i=n-k$ solo tendremos $k$ minutos para comerlos!
+Ademas, si analizamos nos conviene empezar desde n e ir hacia atras, pero... ¿Por que?, bueno, recordemos la pregunta clave del problema, **¿Tengo suficiente tiempo después de este minuto para comer el plato?**. Eso seria tiempo que esta a la derecha de nuestro arreglo, por ende tiene sentido recorrerlo de derecha a izquierda por que si nuestro contrador r va acumulando el tiempo disponible conforme nos movemos hacia la izquierda.
 
-Solo podemos tomar $\lfloor  \frac{n}{1+k} \rfloor $ platos
-- ¿Por qué?: Si nos toma $1 + k$ mins ingerir y tomar un plato entonces repartimos ese tiempo en $n$ platillos
+Cuando llegamos al minuto $i$, $r$ ya cuenta exactamente cuantos minutos tenemos despues de $i$.
 
-Ahora, la pregunta del millon, **$\text{¿Cuál es la manera mas optima de escogerlos para maximizar la dulzura obtenida?}$**
+Haremos uso de una cola de prioridad min-heap en donde iremos guardando la dulzura de los sushis, en donde el tope siempre sera el menor. De esta manera, si se presenta el caso en que un i-esimo sushi tiene mas dulzura que el tope, y ademas, tenemos tiempo para comerlo, quitamos el tope y agregamos el actual.
+
+Otro detalle importante a destacar es que solo podemos hacermos cada que tengamos $k+1$ mins dispnibles
+
+## Codigo
+Es relativamente sencillo... 
+```cpp
+    int n,k; cin>>n>>k;
+    vector<ll> a(n+1);
+    priority_queue<ll, vector<ll>, greater<ll>> pq;
+    ll i, r = 0;
+ 
+    for(i=1;i<=n;i++) cin>>a[i];
+ 
+    for(i=n;i>=1;i--){
+ 
+        r++;
+        // tiempo en comer y agarrar
+        if(r >= k + 1){
+ 
+            pq.push(a[i]);
+            r-= (k+1);
+ 
+        } else if(!pq.empty() && pq.top()<a[i]){
+ 
+            pq.pop(); pq.push(a[i]);
+ 
+        }
+ 
+    }
+ 
+    ll sum = 0;
+ 
+    while(!pq.empty()){
+        sum += pq.top(); pq.pop();
+    }
+
+```
