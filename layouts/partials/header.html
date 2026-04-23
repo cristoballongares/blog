@@ -6,8 +6,16 @@
                 {{- $label_text -}}
             </a>
             <div class="logo-switches">
-                <!-- Obsidian Theme Toggle -->
-                <button id="obsidian-toggle" title="Toggle Obsidian Theme" aria-label="Toggle Obsidian Theme">
+                <!-- Theme Toggles -->
+                <button id="japanese-toggle" title="Tema Japonés Vintage" aria-label="Tema Japonés Vintage">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                </button>
+
+                <button id="obsidian-toggle" title="Tema Obsidian" aria-label="Tema Obsidian">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 3l1.912 5.886h6.188l-5 3.633 1.912 5.886-5-3.633-5 3.633 1.912-5.886-5-3.633h6.188z"></path>
                     </svg>
@@ -50,15 +58,32 @@
 </header>
 
 <script>
+    const setMode = (mode) => {
+        document.body.classList.remove("theme-obsidian", "theme-japanese");
+        document.documentElement.classList.remove("obsidian-active", "japanese-active");
+        
+        if (mode) {
+            document.body.classList.add("theme-" + mode);
+            document.documentElement.classList.add(mode + "-active");
+            localStorage.setItem("blog-mode", mode);
+        } else {
+            localStorage.removeItem("blog-mode");
+        }
+    };
+
+    document.getElementById("japanese-toggle").addEventListener("click", () => {
+        if (document.body.classList.contains("theme-japanese")) {
+            setMode(null);
+        } else {
+            setMode("japanese");
+        }
+    });
+
     document.getElementById("obsidian-toggle").addEventListener("click", () => {
         if (document.body.classList.contains("theme-obsidian")) {
-            document.body.classList.remove("theme-obsidian");
-            document.documentElement.classList.remove("obsidian-active");
-            localStorage.setItem("obsidian-mode", "disabled");
+            setMode(null);
         } else {
-            document.body.classList.add("theme-obsidian");
-            document.documentElement.classList.add("obsidian-active");
-            localStorage.setItem("obsidian-mode", "enabled");
+            setMode("obsidian");
         }
     });
 </script>
