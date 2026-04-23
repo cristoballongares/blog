@@ -1,7 +1,11 @@
 ---
-date: '2025-11-20'
+title: "Codeforces Contest 1065: Análisis"
+date: 2025-11-20
 draft: false
-title: 'Codeforces- Contest1065 Analisis'
+author: "Cristobal Longares"
+description: "Análisis de los problemas A y B del contest Codeforces 1065. Soluciones con explicaciones detalladas."
+categories: ["Codeforces"]
+tags: ["codeforces", "contest", "resolucion-problemas"]
 ShowToc: true
 TocOpen: true
 ---

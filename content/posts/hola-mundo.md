@@ -1,14 +1,15 @@
 ---
-title: "main.cpp"
+title: "Bienvenido al Blog"
 date: 2025-11-20
-weight: -1
 draft: false
-
+author: "Cristobal Longares"
+description: "Introducción personal y presentación del blog sobre programación competitiva, estructuras de datos, algoritmos y más."
+categories: ["General"]
+tags: ["introduccion", "bienvenida", "programacion-competitiva"]
 cover:
     image: "/images/pinguinorojocompu.jpg"
     alt: "yo"
     relative: false
-
 ---
 
 # Introduccion

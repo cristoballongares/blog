@@ -1,6 +1,11 @@
 ---
-date: '2025-12-25T21:44:06-06:00'
-title: 'LargestRectangleInHistogram'
+title: "Largest Rectangle In Histogram"
+date: 2025-12-25
+draft: false
+author: "Cristobal Longares"
+description: "Solución a problema clásico usando pila monótona. Explicación e implementación de algoritmo eficiente."
+categories: ["Estructuras de Datos"]
+tags: ["monotonic-stack", "pila-monotona", "leetcode", "algoritmos"]
 ---
 # Por fin
 Despues de muchisimo tiempo, al fin logré resolver este problema tan divertido jajaja

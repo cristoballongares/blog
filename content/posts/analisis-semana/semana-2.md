@@ -1,6 +1,11 @@
 ---
-date: '2026-03-09T18:15:34-06:00'
-title: 'Second and Third Week :p'
+title: "Semana 2 y 3: Análisis"
+date: 2026-03-09
+draft: false
+author: "Cristobal Longares"
+description: "Product and GCD, Knight Moves Grid, Serval and Kaitenzushi Buffet. Análisis de problemas avanzados con explicaciones teóricas."
+categories: ["Análisis Semanal"]
+tags: ["teoria-numeros", "greedy", "numero-theory", "gcd", "regret-greedy"]
 ---
 
 # Introduction

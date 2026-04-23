@@ -1,7 +1,11 @@
 ---
-date: '2026-02-22T15:36:05-06:00'
+title: "Semana 1: Análisis"
+date: 2026-02-22
 draft: false
-title: 'Semana 1, Analisis'
+author: "Cristobal Longares"
+description: "Análisis de problemas semanales: Sparse Table, Gepetto and Pizzas, Hairdresser. Explicación detallada de temas y soluciones."
+categories: ["Análisis Semanal"]
+tags: ["sparse-table", "backtracking", "estructuras-datos", "programacion-dinamica"]
 ---
 
 # Objetivos de la semana

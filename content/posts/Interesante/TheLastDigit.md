@@ -1,6 +1,11 @@
 ---
-date: '2025-12-28T23:17:52-06:00'
-title: 'The Last Digit - SPOJ - Teoria de Numeros'
+title: "The Last Digit (SPOJ)"
+date: 2025-12-28
+draft: false
+author: "Cristobal Longares"
+description: "Encontrar el último dígito de a^b usando teoría de números y ciclos. Solución eficiente a problema SPOJ."
+categories: ["Algoritmos"]
+tags: ["teoria-numeros", "number-theory", "spoj", "exponenciacion", "ciclos"]
 ---
 En resumen, el [problema](https://www.spoj.com/problems/LASTDIG/en/) es el siguiente:
 > *Encontrar el ultimo digito de $a^b$ tal que $0<=a<=20$ y $0<=b<=2,147,483,000$*
