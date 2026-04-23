@@ -13,3 +13,18 @@
         });
     });
 </script>
+
+<!-- Obsidian Theme Support -->
+<link rel="stylesheet" href="/css/theme-obsidian.css">
+<script>
+    (function() {
+        const storedTheme = localStorage.getItem('obsidian-mode');
+        if (storedTheme === 'enabled' || (!storedTheme && {{ site.Params.defaultToObsidian | default false }})) {
+            document.documentElement.classList.add('obsidian-active');
+            // We'll apply the class to body in a DOMContentLoaded listener since body isn't available yet
+            document.addEventListener("DOMContentLoaded", function() {
+                document.body.classList.add('theme-obsidian');
+            });
+        }
+    })();
+</script>

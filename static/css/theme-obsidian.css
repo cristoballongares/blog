@@ -1,0 +1,133 @@
+:root {
+    /* Obsidian Light Theme */
+    --obsidian-bg: #faf8f3;
+    --obsidian-bg-alt: #f1efea;
+    --obsidian-text: #1f2937;
+    --obsidian-text-muted: #6b7280;
+    --obsidian-primary: #6b7280;
+    --obsidian-accent: #8b5a2b;
+    --obsidian-accent-hover: #724a23;
+    --obsidian-border: #d1d5db;
+    --obsidian-sidebar-bg: #f4f2ed;
+    --obsidian-card-bg: #ffffff;
+    --obsidian-card-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    --obsidian-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --obsidian-font-serif: 'Georgia', serif;
+}
+
+.dark {
+    /* Obsidian Dark Theme */
+    --obsidian-bg: #1e1e1e;
+    --obsidian-bg-alt: #2b2b2b;
+    --obsidian-text: #e5e7eb;
+    --obsidian-text-muted: #9ca3af;
+    --obsidian-primary: #9ca3af;
+    --obsidian-accent: #d4a373;
+    --obsidian-accent-hover: #b88d60;
+    --obsidian-border: #3f3f3f;
+    --obsidian-sidebar-bg: #252525;
+    --obsidian-card-bg: #2b2b2b;
+    --obsidian-card-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Base Styles */
+body.theme-obsidian {
+    background-color: var(--obsidian-bg);
+    color: var(--obsidian-text);
+    font-family: var(--obsidian-font-sans);
+    line-height: 1.6;
+}
+
+body.theme-obsidian .main {
+    max-width: var(--main-width, 1000px);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typography */
+body.theme-obsidian h1, 
+body.theme-obsidian h2, 
+body.theme-obsidian h3, 
+body.theme-obsidian h4 {
+    color: var(--obsidian-text);
+    font-weight: 600;
+}
+
+body.theme-obsidian .post-content {
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+}
+
+/* Sidebar & Navigation */
+body.theme-obsidian .header {
+    background: var(--obsidian-bg);
+    border-bottom: 1px solid var(--obsidian-border);
+}
+
+body.theme-obsidian .nav {
+    max-width: var(--main-width, 1000px);
+    margin: 0 auto;
+}
+
+/* Nested Sidebar Mockup */
+.obsidian-sidebar {
+    padding: 20px;
+    background: var(--obsidian-sidebar-bg);
+    border-right: 1px solid var(--obsidian-border);
+    height: 100%;
+}
+
+.sidebar-item {
+    padding: 4px 8px;
+    margin: 2px 0;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-item:hover {
+    background: var(--obsidian-bg-alt);
+}
+
+.sidebar-item.active {
+    background: var(--obsidian-bg-alt);
+    font-weight: 500;
+}
+
+.sidebar-nested {
+    margin-left: 16px;
+    border-left: 1px solid var(--obsidian-border);
+}
+
+/* Cards */
+body.theme-obsidian .post-entry {
+    background: var(--obsidian-card-bg);
+    border: 1px solid var(--obsidian-border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--obsidian-card-shadow);
+}
+
+body.theme-obsidian .post-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    font-size: 0.85rem;
+    color: var(--obsidian-text-muted);
+    margin-bottom: 16px;
+}
+
+/* TOC */
+.obsidian-toc {
+    background: var(--obsidian-bg-alt);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}

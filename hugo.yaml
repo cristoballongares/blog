@@ -22,12 +22,17 @@ markup:
 params:
   # Color del tema
   defaultTheme: auto
+  # Obsidian theme support
+  defaultToObsidian: true
+  
   # ESTO ES IMPORTANTE: Activa el script de matemáticas en el tema
   math: true
   
+  description: "Explorando la programación competitiva, algoritmos y estructuras de datos."
+  
   homeInfoParams:
-    Title: ":)"
-    Content: ""
+    Title: "Bienvenido a mi Blog Dev"
+    Content: "Aquí comparto mis análisis de problemas de Codeforces, tutoriales de algoritmos y más."
 
   socialIcons:
     - name: github
