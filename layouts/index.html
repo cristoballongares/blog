@@ -4,50 +4,50 @@
 {{- partial "index_profile.html" . }}
 {{- else }}
 
+{{- $allPages := union .RegularPages .Sections }}
 {{- if .IsHome }}
-<!-- Hero Section -->
-<section class="hero-section">
-    <h1>{{ site.Title }}</h1>
-    <p>{{ site.Params.description | default "Un blog sobre programación competitiva y desarrollo" }}</p>
-    <div class="category-grid">
-        {{ range (where site.Taxonomies.categories "Count" ">" 0) }}
-        <a href="{{ .Page.RelPermalink }}" class="category-card">
-            {{ .Page.Title }}
-        </a>
-        {{ end }}
+  {{- $allPages = where site.RegularPages "Type" "in" (site.Params.mainSections | default (slice "posts")) }}
+  {{- $allPages = where $allPages "Params.hiddenInHomeList" "!=" "true" }}
+
+  {{- $featured := where $allPages ".Params.featured" true | first 1 }}
+  {{- with $featured }}
+  {{- range . }}
+  <article class="featured-post">
+    <span class="featured-label">Presentacion</span>
+    <h2 class="featured-title">
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h2>
+    <div class="featured-content">
+      <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
     </div>
-</section>
+    <div class="featured-footer">
+      <a href="{{ .Permalink }}" class="featured-link">Leer presentacion &rarr;</a>
+      <span class="featured-date">{{ .Date.Format "2 Jan, 2006" }}</span>
+    </div>
+  </article>
+  {{- end }}
+  {{- end }}
+
+  {{- $allPages = where $allPages ".Params.featured" "!=" true }}
 {{- end }}
 
-{{- $pages := union .RegularPages .Sections }}
-{{- if .IsHome }}
-{{- $pages = where site.RegularPages "Type" "in" (site.Params.mainSections | default (slice "posts")) }}
-{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
-{{- end }}
+{{- $paginator := .Paginate $allPages }}
 
-{{- $paginator := .Paginate $pages }}
-
+{{- if $paginator.Pages }}
 <div class="post-list">
-{{- range $index, $page := $paginator.Pages }}
-
+{{- range $paginator.Pages }}
 <article class="post-entry">
-  {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
-  
   <header class="entry-header">
     {{- range (.GetTerms "categories") }}
     <span class="entry-category-stamp">{{ .LinkTitle }}</span>
     {{- end }}
-    
     <h2>{{ .Title }}</h2>
   </header>
-  
   {{- if (ne (.Param "hideSummary") true) }}
   <div class="entry-content">
     <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
   </div>
   {{- end }}
-  
   {{- if not (.Param "hideMeta") }}
   <footer class="entry-footer">
     {{- partial "post_meta.html" . -}}
@@ -57,15 +57,16 @@
 </article>
 {{- end }}
 </div>
+{{- end }}
 
 {{- if gt $paginator.TotalPages 1 }}
 <footer class="page-footer">
   <nav class="pagination">
     {{- if $paginator.HasPrev }}
-    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" }}</a>
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">&laquo; {{ i18n "prev_page" }}</a>
     {{- end }}
     {{- if $paginator.HasNext }}
-    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }} »</a>
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }} &raquo;</a>
     {{- end }}
   </nav>
 </footer>

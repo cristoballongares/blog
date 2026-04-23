@@ -1,4 +1,8 @@
-/* Overrides for PaperMod elements when theme-obsidian is active */
+/* =============================================================
+   OBSIDIAN THEME OVERRIDES
+   Solo se aplica cuando body tiene la clase .theme-obsidian
+   ============================================================= */
+
 body.theme-obsidian.dark {
     --theme: #1e1e1e;
     --entry: #2b2b2b;
@@ -23,20 +27,35 @@ body.theme-obsidian:not(.dark) {
     --border: #d1d5db;
 }
 
-body.theme-obsidian .first-entry {
-    background: var(--obsidian-bg-alt);
-    border: 2px solid var(--obsidian-accent);
+body.theme-obsidian .main {
+    padding-top: 40px;
 }
 
-body.theme-obsidian .post-entry .entry-header h2 {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-    color: var(--obsidian-accent);
+/* Acento vintage marrón en featured y categorias */
+body.theme-obsidian:not(.dark) .featured-post {
+    border-left: 3px solid #8b5a2b;
 }
 
-body.theme-obsidian .entry-footer {
-    font-size: 0.85rem;
-    color: var(--obsidian-text-muted);
+body.theme-obsidian.dark .featured-post {
+    border-left: 3px solid #d4a373;
+}
+
+body.theme-obsidian:not(.dark) .featured-label {
+    color: #8b5a2b;
+    border-color: rgba(139, 90, 43, 0.4);
+}
+
+body.theme-obsidian.dark .featured-label {
+    color: #d4a373;
+    border-color: rgba(212, 163, 115, 0.4);
+}
+
+body.theme-obsidian:not(.dark) .entry-category-stamp {
+    color: #8b5a2b;
+}
+
+body.theme-obsidian.dark .entry-category-stamp {
+    color: #d4a373;
 }
 
 body.theme-obsidian .post-meta {
@@ -44,53 +63,4 @@ body.theme-obsidian .post-meta {
     gap: 12px;
     align-items: center;
     flex-wrap: wrap;
-}
-
-body.theme-obsidian .main {
-    padding-top: 40px;
-}
-
-/* Hero Section */
-.hero-section {
-    padding: 60px 0;
-    text-align: center;
-    background: var(--obsidian-bg-alt);
-    margin-bottom: 40px;
-    border-radius: 12px;
-    border: 1px solid var(--obsidian-border);
-}
-
-.hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 16px;
-}
-
-.hero-section p {
-    font-size: 1.25rem;
-    color: var(--obsidian-text-muted);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Category Grid */
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 16px;
-    margin-top: 40px;
-    margin-bottom: 60px;
-}
-
-.category-card {
-    padding: 20px;
-    background: var(--obsidian-card-bg);
-    border: 1px solid var(--obsidian-border);
-    border-radius: 8px;
-    text-align: center;
-    transition: all 0.2s;
-}
-
-.category-card:hover {
-    border-color: var(--obsidian-accent);
-    background: var(--obsidian-bg-alt);
 }

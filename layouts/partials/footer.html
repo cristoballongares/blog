@@ -5,7 +5,7 @@
         {{- else }}
         <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
         {{- end }}
-        
+
         <div class="footer-links">
             {{- partial "social_icons.html" (dict "align" "center") }}
         </div>
@@ -13,7 +13,7 @@
         <div class="footer-powered">
             <span>
                 Powered by
-                <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+                <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &amp;
                 <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
             </span>
         </div>
@@ -27,31 +27,6 @@
     </svg>
 </a>
 {{- end }}
-
-<style>
-    .footer {
-        padding: 40px 0;
-        border-top: 1px solid var(--obsidian-border);
-        margin-top: 60px;
-        color: var(--obsidian-text-muted);
-        font-size: 0.9rem;
-    }
-    .footer-content {
-        max-width: var(--main-width, 1000px);
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-    }
-    .footer-links {
-        display: flex;
-        gap: 12px;
-    }
-    .footer-powered {
-        font-size: 0.8rem;
-    }
-</style>
 
 {{- $is_search := eq .Layout `search` }}
 {{- if not $is_search }}
@@ -83,7 +58,6 @@
             }
         });
     });
-
 </script>
 {{- end }}
 {{- end }}
@@ -100,6 +74,5 @@
             mybutton.style.opacity = "0";
         }
     };
-
 </script>
 {{- end }}

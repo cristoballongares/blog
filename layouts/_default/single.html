@@ -17,7 +17,7 @@
     </div>
     {{- end }}
   </header>
-  
+
   {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
 
@@ -39,69 +39,39 @@
       <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
       {{- end }}
     </ul>
-    
+
     {{- if (.Param "ShowPostNavLinks") | default true }}
     <div class="post-nav">
-        {{- if .PrevInSection }}
-        <a class="prev" href="{{ .PrevInSection.Permalink }}">
-            <span class="nav-label">« Anterior</span>
-            <span class="nav-title">{{ .PrevInSection.Title }}</span>
-        </a>
-        {{- end }}
-        {{- if .NextInSection }}
-        <a class="next" href="{{ .NextInSection.Permalink }}">
-            <span class="nav-label">Siguiente »</span>
-            <span class="nav-title">{{ .NextInSection.Title }}</span>
-        </a>
-        {{- end }}
+      {{- if .PrevInSection }}
+      <a class="prev" href="{{ .PrevInSection.Permalink }}">
+        <span class="nav-label">&laquo; Anterior</span>
+        <span class="nav-title">{{ .PrevInSection.Title }}</span>
+      </a>
+      {{- else }}<span></span>{{- end }}
+      {{- if .NextInSection }}
+      <a class="next" href="{{ .NextInSection.Permalink }}">
+        <span class="nav-label">Siguiente &raquo;</span>
+        <span class="nav-title">{{ .NextInSection.Title }}</span>
+      </a>
+      {{- end }}
     </div>
     {{- end }}
 
-    <!-- Related Posts -->
     {{- $related := site.RegularPages.Related . | first 3 }}
     {{- with $related }}
     <div class="related-posts">
-        <h3>Posts Relacionados</h3>
-        <ul>
-            {{- range . }}
-            <li>
-                <a href="{{ .Permalink }}">{{ .Title }}</a>
-                <span class="date">{{ .Date.Format "Jan 2, 2006" }}</span>
-            </li>
-            {{- end }}
-        </ul>
+      <h3>Posts Relacionados</h3>
+      <ul>
+        {{- range . }}
+        <li>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <span class="date">{{ .Date.Format "2 Jan, 2006" }}</span>
+        </li>
+        {{- end }}
+      </ul>
     </div>
     {{- end }}
   </footer>
 </article>
-
-<style>
-    .post-nav {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid var(--obsidian-border);
-    }
-    .post-nav a {
-        display: flex;
-        flex-direction: column;
-        max-width: 45%;
-    }
-    .post-nav .next { text-align: right; }
-    .nav-label { font-size: 0.8rem; color: var(--obsidian-text-muted); }
-    .nav-title { font-weight: bold; }
-
-    .related-posts {
-        margin-top: 60px;
-        padding: 24px;
-        background: var(--obsidian-bg-alt);
-        border-radius: 8px;
-    }
-    .related-posts ul { list-style: none; padding: 0; }
-    .related-posts li { margin-bottom: 12px; display: flex; justify-content: space-between; }
-    .related-posts li a { font-weight: 500; }
-    .related-posts li .date { font-size: 0.85rem; color: var(--obsidian-text-muted); }
-</style>
 
 {{- end }}

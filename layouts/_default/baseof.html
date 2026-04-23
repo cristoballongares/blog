@@ -7,12 +7,12 @@
 
 <body id="top">
     {{ partial "header.html" . -}}
-    
+
     <div class="site-container">
         {{- if not .IsHome }}
         {{- partial "sidebar.html" . }}
         {{- end }}
-        
+
         <main class="main">
             {{- block "main" . }}{{ end }}
         </main>
@@ -20,48 +20,5 @@
 
     {{ partial "footer.html" . -}}
 </body>
-
-<style>
-    .site-container {
-        display: flex;
-        max-width: var(--main-width, 1200px);
-        margin: 0 auto;
-        gap: 24px;
-    }
-    
-    .obsidian-sidebar {
-        width: 280px;
-        flex-shrink: 0;
-        position: sticky;
-        top: 60px;
-        height: calc(100vh - 60px);
-        overflow-y: auto;
-        padding: 20px;
-        border-right: 1px solid var(--obsidian-border);
-    }
-    
-    .main {
-        flex-grow: 1;
-        width: 100%;
-    }
-    
-    @media (max-width: 768px) {
-        .site-container {
-            flex-direction: column;
-        }
-        .obsidian-sidebar {
-            width: 100%;
-            position: static;
-            height: auto;
-            border-right: none;
-            border-bottom: 1px solid var(--obsidian-border);
-        }
-    }
-
-    /* Hide sidebar by default if not in obsidian mode */
-    body:not(.theme-obsidian) .obsidian-sidebar {
-        display: none;
-    }
-</style>
 
 </html>

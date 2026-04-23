@@ -6,6 +6,8 @@ author: "Cristobal Longares"
 description: "Introducción personal y presentación del blog sobre programación competitiva, estructuras de datos, algoritmos y más."
 categories: ["General"]
 tags: ["introduccion", "bienvenida", "programacion-competitiva"]
+weight: 1
+featured: true
 cover:
     image: "/images/pinguinorojocompu.jpg"
     alt: "yo"
