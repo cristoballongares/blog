@@ -6,13 +6,13 @@
    ============================================================= */
 
 :root {
-    --main-width: 860px;
+    --main-width: 1040px;
     --gap: 28px;
 }
 
 @media screen and (min-width: 1300px) {
     :root {
-        --main-width: 940px;
+        --main-width: 1200px;
     }
 }
 
@@ -26,7 +26,7 @@
 }
 
 .obsidian-sidebar {
-    width: 260px;
+    width: 200px;
     flex-shrink: 0;
     position: sticky;
     top: 60px;
@@ -226,7 +226,7 @@ body:not(.theme-obsidian) .obsidian-sidebar {
 /* ─── LECTURA DE POSTS (single) ───────────────────────────── */
 
 .post-single {
-    max-width: 720px;
+    max-width: 960px;
 }
 
 .post-header {

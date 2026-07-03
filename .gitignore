@@ -19,6 +19,7 @@ Thumbs.db
 *.swo
 *~
 .vim/
+.gemini/
 
 # Environment
 .env.local

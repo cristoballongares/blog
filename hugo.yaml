@@ -20,8 +20,11 @@ markup:
             - [ "\\(", "\\)" ]
 
 params:
+  author:
+    name: "Autor"
   # Color del tema
-  defaultTheme: auto
+  defaultTheme: "light"
+  disableThemeToggle: true
   # Obsidian theme support
   defaultToObsidian: true
   
