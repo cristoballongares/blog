@@ -3,6 +3,13 @@ languageCode: "es-es"
 title: "Blog dev"
 theme: "PaperMod"
 
+ignoreFiles:
+  - "\\.gemini"
+  - "\\.github"
+  - "\\.gitignore"
+  - "README\\.md"
+  - "CLAUDE\\.md"
+
 enableInlineShortcodes: true
 
 # Configuración crítica para que Hugo NO rompa las fórmulas matemáticas
